@@ -1,21 +1,18 @@
-class CaraokeBar:
+class Bar:
 
     def __init__(self, name, till):
         self.name = name
         self.till = till
         self.stock = {}
-
     
-    def customer_too_drunk_to_sing(self, guest):
+    def guest_too_drunk_to_sing(self, guest):
         return guest.rendition_of_song >= 40
-
 
     def food(self, food):
         if food in self.stock:
             self.stock[food] += 1
         else:
             self.stock[food] = 1
-
 
     def stock_level(self, food):
         if food in self.stock:
@@ -31,8 +28,7 @@ class CaraokeBar:
 
         return total
 
-
-        def add_drink(self, drink):
+    def add_drink(self, drink):
         if drink in self.stock:
             self.stock[drink] += 1
         else:
@@ -53,7 +49,6 @@ class CaraokeBar:
 
         return total
 
-
     def can_serve(self, guest, drink):
         if not self.guest_is_old_enough(guest):
             return False
@@ -63,9 +58,9 @@ class CaraokeBar:
             return False
         if self.stock_level(drink) == 0:
             return False
-        return True;
+        return True
 
-        def serve(self, guest, food):
+    def serve(self, guest, food):
         if self.can_serve(guest, food):
             self.stock[food] -= 1
             guest.food(food)
@@ -77,10 +72,8 @@ class CaraokeBar:
             guest.buy_drink(drink)
             self.till += drink.price
 
-
     def guest_is_old_enough(self, guest):
         return guest.age >= 18
-
 
     def guest_can_afford_drink(self, guest, drink):
         return guest.sufficient_funds(drink)
